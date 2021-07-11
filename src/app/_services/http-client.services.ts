@@ -11,4 +11,10 @@ export class HttpClientServices {
     getMethod(){
         return this.httpClient.get('http://localhost:3000/product');
     }
+    getCategories(){
+        return this.httpClient.get('https://fakestoreapi.com/products/categories');
+    }
+    addProduct(prodcutData: any){
+        return this.httpClient.post('http://localhost:3000/product', prodcutData);
+    }
 }

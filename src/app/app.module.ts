@@ -8,6 +8,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientServices } from './_services/http-client.services';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { HttpClientServices } from './_services/http-client.services';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     HttpClientServices

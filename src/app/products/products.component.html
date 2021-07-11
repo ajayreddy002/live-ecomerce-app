@@ -7,30 +7,62 @@
     </div>
     <div class="col-md-10">
         <div class="content--block">
-            <h1>Products</h1>
-            <div class="table--block">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let product of products">
-                            <td>{{product.title}}</td>
-                            <td>{{product.category}}</td>
-                            <td>{{product.description}}</td>
-                            <td>
-                                <img class="img-fluid" src="{{product.image}}" alt="{{product.title}}">
-                            </td>
-                            <td>{{product.price}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <ng-container *ngIf="isProductView">
+                <div class="btn--block d-flex justify-content-between">
+                    <h1>Products</h1>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="isProductView = false">+ Add product</button>
+                </div>
+                <div class="table--block">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of products">
+                                <td>{{product.title}}</td>
+                                <td>{{product.category}}</td>
+                                <td>{{product.description}}</td>
+                                <td>
+                                    <img class="img-fluid" src="{{product.image}}" alt="{{product.title}}">
+                                </td>
+                                <td>{{product.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+            <div class="form--block" *ngIf="!isProductView">
+                <form [formGroup]="productForm" (submit)="addProduct()">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Product Title</label>
+                        <input type="text" class="form-control" id="title" formControlName="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="price" formControlName="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" formControlName="description">
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" formControlName="category">
+                            <option selected>Select a category</option>
+                            <option value="category" *ngFor="let category of categories">{{category}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Product Image</label>
+                        <input type="text" class="form-control" id="image" formControlName="image">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>
